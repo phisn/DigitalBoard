@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="__vm">
+      <UniqueIdentifier>{dfa363db-e054-4d71-9cc8-31ff031e9358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Device">
+      <UniqueIdentifier>{1751d7c2-6d19-4d8f-ac89-821670808ae4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{dee01e85-d432-49b7-a6fd-d219601c0482}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Communication">
+      <UniqueIdentifier>{b15f9862-4c4a-4240-b3c0-c90d310d0853}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DigitalBoard.ino" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="__vm\.DigitalBoard.vsarduino.h">
+      <Filter>__vm</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\RepesentationManager.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameController.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DeviceManager.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DevicePins.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\ExecutionManager.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\FailureHandler.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\FaultHandler.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\MapManager.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\MemoryManager.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\NetworkManager.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\OutputManager.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\StatusLED.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\BotInterface.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\Interface.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\InterfaceManager.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\LcdAccess.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\SerialInterface.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game\RepesentationManager.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameController.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DeviceManager.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\ExecutionManager.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\FailureHandler.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\FaultHandler.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\MapManager.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\MemoryManager.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\NetworkManager.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\OutputManager.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\StatusLED.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Communication\BotInterface.cpp">
+      <Filter>Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="Communication\InterfaceManager.cpp">
+      <Filter>Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="Communication\LcdAccess.cpp">
+      <Filter>Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="Communication\SerialInterface.cpp">
+      <Filter>Communication</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
