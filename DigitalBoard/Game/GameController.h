@@ -38,12 +38,6 @@ namespace Game
 		// communication layer
 		bool Process(); 
 		
-		// view wont be stored like stateviews
-		// could cause lag and undefined behaivour
-		// with StateManager on reload. Recreate
-		// is called to restore old state
-		void Interrupt(InterruptView* const interruptView);
-
 		// finish allow, if return is true
 		bool RequestFinish();
 

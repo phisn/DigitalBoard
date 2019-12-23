@@ -24,10 +24,6 @@ namespace Game
 		data->playerCount = 0;
 	}
 
-	void Collector::Recreate()
-	{
-	}
-
 	bool Collector::Process()
 	{
 		if (needsUpdate)

@@ -28,7 +28,6 @@ namespace Game
 		Collector(Data* const data);
 
 		void Create() override;
-		void Recreate() override;
 		
 		bool Process() override;
 		bool Finish() override; 

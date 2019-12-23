@@ -20,11 +20,6 @@ namespace Game
 		// and cant fail
 		virtual void Create() = 0;
 
-		// called if state needed to be
-		// recreated. used in interrupt
-		// for example
-		virtual void Recreate() = 0;
-
 		// called once each tick
 		// returns if data has changed
 		// since last tick
@@ -45,8 +40,4 @@ namespace Game
 		// process has found a update
 		virtual void UpdateRep() = 0;
 	};
-
-	// interrupts work similar to StateManagers
-	// but do not have to define values or types
-	typedef StateManagerView InterruptView;
 }

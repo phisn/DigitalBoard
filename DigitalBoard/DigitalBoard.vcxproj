@@ -112,11 +112,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Communication\BotInterface.h" />
+    <ClInclude Include="Common\Common.h" />
+    <ClInclude Include="Common\StateContainer.h" />
     <ClInclude Include="Communication\Interface.h" />
     <ClInclude Include="Communication\InterfaceManager.h" />
-    <ClInclude Include="Communication\LcdAccess.h" />
-    <ClInclude Include="Communication\SerialInterface.h" />
+    <ClInclude Include="Communication\StateHandler.h" />
     <ClInclude Include="Device\DeviceManager.h" />
     <ClInclude Include="Device\DevicePins.h" />
     <ClInclude Include="Device\ExecutionManager.h" />
@@ -136,10 +136,7 @@
     <ClInclude Include="__vm\.DigitalBoard.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Communication\BotInterface.cpp" />
     <ClCompile Include="Communication\InterfaceManager.cpp" />
-    <ClCompile Include="Communication\LcdAccess.cpp" />
-    <ClCompile Include="Communication\SerialInterface.cpp" />
     <ClCompile Include="Device\DeviceManager.cpp" />
     <ClCompile Include="Device\ExecutionManager.cpp" />
     <ClCompile Include="Device\FailureHandler.cpp" />

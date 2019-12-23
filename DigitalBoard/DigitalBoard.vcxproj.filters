@@ -13,6 +13,9 @@
     <Filter Include="Communication">
       <UniqueIdentifier>{b15f9862-4c4a-4240-b3c0-c90d310d0853}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{62ed0d98-65d1-4f59-9b44-92997602350c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DigitalBoard.ino" />
@@ -54,19 +57,10 @@
     <ClInclude Include="Device\StatusLED.h">
       <Filter>Device</Filter>
     </ClInclude>
-    <ClInclude Include="Communication\BotInterface.h">
-      <Filter>Communication</Filter>
-    </ClInclude>
     <ClInclude Include="Communication\Interface.h">
       <Filter>Communication</Filter>
     </ClInclude>
     <ClInclude Include="Communication\InterfaceManager.h">
-      <Filter>Communication</Filter>
-    </ClInclude>
-    <ClInclude Include="Communication\LcdAccess.h">
-      <Filter>Communication</Filter>
-    </ClInclude>
-    <ClInclude Include="Communication\SerialInterface.h">
       <Filter>Communication</Filter>
     </ClInclude>
     <ClInclude Include="Game\GameSector.h">
@@ -83,6 +77,15 @@
     </ClInclude>
     <ClInclude Include="Game\StateManagerView.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\StateContainer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\StateHandler.h">
+      <Filter>Communication</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,16 +119,7 @@
     <ClCompile Include="Device\StatusLED.cpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="Communication\BotInterface.cpp">
-      <Filter>Communication</Filter>
-    </ClCompile>
     <ClCompile Include="Communication\InterfaceManager.cpp">
-      <Filter>Communication</Filter>
-    </ClCompile>
-    <ClCompile Include="Communication\LcdAccess.cpp">
-      <Filter>Communication</Filter>
-    </ClCompile>
-    <ClCompile Include="Communication\SerialInterface.cpp">
       <Filter>Communication</Filter>
     </ClCompile>
     <ClCompile Include="Game\Collector.cpp">

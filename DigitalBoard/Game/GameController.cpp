@@ -2,7 +2,6 @@
 
 namespace
 {
-	bool interrupted = false;
 	bool finishRequested = false;
 
 	namespace Current
@@ -81,14 +80,6 @@ namespace Game
 			}
 
 			return result;
-		}
-
-		void Interrupt(InterruptView* const interruptView)
-		{
-			delete Current::stateView;
-			Current::stateView = interruptView;
-
-			interrupted = true;
 		}
 
 		bool RequestFinish()

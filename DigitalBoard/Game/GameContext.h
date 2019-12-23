@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../Common/StateContainer.h"
 #include "../Game/StateManagerView.h"
 
 #pragma pack(push, 1)
@@ -74,11 +75,14 @@ namespace Game
 		}
 	};
 
-	template <typename State, typename... States>
-	struct GameContext;
+	template <typename StateContainer>
+	struct GameContext
+	{
+		static_assert(false, "GameContext only accepts GameContext");
+	};
 
 	template <typename State>
-	struct GameContext<State>
+	struct GameContext<StateContainer<State>>
 		:
 		public GameContextBase<State>
 	{
@@ -116,7 +120,7 @@ namespace Game
 	};
 
 	template <typename State, typename... States>
-	struct GameContext
+	struct GameContext<StateContainer<State, States...>>
 		:
 		public GameContextBase<State>
 	{
@@ -164,6 +168,11 @@ namespace Game
 	private:
 		GameContext<States...> next = GameContext<States...>;
 	};
+
+	void _()
+	{
+		GameContext<StateContainer<Game::Collector>> gc;
+	}
 }
 
 #pragma pack(pop)
