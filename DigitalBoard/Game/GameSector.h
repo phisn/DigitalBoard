@@ -20,8 +20,8 @@ namespace Game
 		unsigned char state;
 	};
 
-	/*namespace Controller
+	namespace Controller
 	{
 		GameState GetState();
-	}*/
+	}
 }

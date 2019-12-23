@@ -72,13 +72,15 @@ namespace Game
 				return false;
 			}
 
-			bool result = Current::stateView->Process();
+			const bool result = Current::stateView->Process();
 
 			if (result)
 			{
+				Save();
+				Current::stateView->UpdateRep();
 			}
 
-
+			return result;
 		}
 
 		void Interrupt(InterruptView* const interruptView)
@@ -98,6 +100,11 @@ namespace Game
 			}
 
 			return false;
+		}
+
+		void Save()
+		{
+
 		}
 
 		void FinishState()

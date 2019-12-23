@@ -47,5 +47,9 @@ namespace Game
 		// finish allow, if return is true
 		bool RequestFinish();
 
+		// manually saves data to sector
+		// should normally not be called
+		// by other modules. stay for debug
+		void Save();
 	}
 }

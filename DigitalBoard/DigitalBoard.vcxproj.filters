@@ -72,25 +72,10 @@
     <ClInclude Include="Game\GameSector.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\StateDataBase.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Collector.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\GameManager.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\SetupManager.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game\CollectData.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\GameData.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\SetupData.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\GameContext.h">
@@ -143,19 +128,7 @@
     <ClCompile Include="Communication\SerialInterface.cpp">
       <Filter>Communication</Filter>
     </ClCompile>
-    <ClCompile Include="Game\GameSector.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\StateDataBase.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Collector.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\GameManager.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\SetupManager.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
