@@ -9,7 +9,7 @@ namespace Game
 	struct CollectData
 	{
 		unsigned char playerCount;
-		PlayerId playerIds[COMMON_MAX_PLAYERCOUNT];
+		PlayerId playerIds[DEF_PLAYER_COUNT];
 	};
 
 	namespace CollectorAccess

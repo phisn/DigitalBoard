@@ -1,4 +1,5 @@
 #include "Collector.h"
+
 #include "../Device/FaultHandler.h"
 
 namespace
@@ -42,12 +43,11 @@ namespace Game
 
 	void Collector::UpdateRep()
 	{
-		return false;
 	}
 
 	PlayerId Collector::CreatePlayer()
 	{
-		if (data->playerCount >= COMMON_MAX_PLAYERCOUNT)
+		if (data->playerCount >= DEF_PLAYER_COUNT)
 		{
 			Device::FaultHandler::Handle(
 				{

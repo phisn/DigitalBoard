@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Common/StateContainer.h"
+#include "../Game/StateHandler.h"
 #include "../Game/StateManagerView.h"
 
 #pragma pack(push, 1)
@@ -13,14 +13,13 @@ namespace Game
 		virtual int FindIndex(GameContextView* const context) = 0;
 		virtual StateManagerView* CreateState(void* const data) = 0;
 
+		virtual void VisitHandler(
+			StateHandlerView* const handler,
+			StateManagerView* const manager) = 0;
+
 		StateManagerView* CreateIndexState(const int index, void* const data)
 		{
-			return CreateIndexState(FindContext(index), data);
-		}
-
-		StateManagerView* CreateIndexState(GameContextView* const context, void* const data)
-		{
-			return context->CreateState(GetContextData(context, data));
+			return FindContext(index)->CreateState(data);
 		}
 
 		virtual int GetRemainingDataSize() = 0;
@@ -64,6 +63,13 @@ namespace Game
 			return new State((State::Data*) data);
 		}
 
+		void VisitHandler(
+			StateHandlerView* const handler,
+			StateManagerView* const manager) override
+		{
+			((StateHandlerContent<State>*) handler)->update((State*) manager);
+		}
+
 		int GetDataSize() override
 		{
 			return sizeof(State::Data);
@@ -78,7 +84,7 @@ namespace Game
 	template <typename StateContainer>
 	struct GameContext
 	{
-		static_assert(false, "GameContext only accepts GameContext");
+		static_assert(false, "GameContext only accepts StateContainer");
 	};
 
 	template <typename State>
@@ -124,9 +130,11 @@ namespace Game
 		:
 		public GameContextBase<State>
 	{
+		typedef GameContext<StateContainer<States...>> Next;
+
 		struct Data
 			:
-			GameContext<States...>::Data
+			Next::Data
 		{
 			State::Data data;
 		};
@@ -166,13 +174,8 @@ namespace Game
 		}
 
 	private:
-		GameContext<States...> next = GameContext<States...>;
+		Next next = Next{ };
 	};
-
-	void _()
-	{
-		GameContext<StateContainer<Game::Collector>> gc;
-	}
 }
 
 #pragma pack(pop)

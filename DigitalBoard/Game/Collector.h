@@ -21,8 +21,9 @@ namespace Game
 		public StateManagerView
 	{
 	public:
+		constexpr static bool CanJoin{ true };
 		constexpr static bool CanRestore{ false };
-
+		
 		typedef CollectData Data;
 
 		Collector(Data* const data);

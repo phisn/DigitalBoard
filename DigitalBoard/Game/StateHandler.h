@@ -1,6 +1,8 @@
 #pragma once
 
-namespace Communication
+#include "../Game/StateContainer.h"
+
+namespace Game
 {
 	template <typename StateContainer>
 	struct StateHandler;
@@ -8,7 +10,6 @@ namespace Communication
 	template <typename State>
 	struct StateHandlerContent
 	{
-		virtual void process(State* const state) = 0;
 		virtual void update(State* const state) = 0;
 	};
 
@@ -18,10 +19,15 @@ namespace Communication
 		static_assert(false, "StateHandler only accepts StateContainer");
 	};
 
+	struct StateHandlerView
+	{
+	};
+
 	template <typename State>
 	struct StateHandler<StateContainer<State>>
 		:
-		public StateHandlerContent<State>
+		public StateHandlerContent<State>,
+		public StateHandlerView
 	{
 	};
 

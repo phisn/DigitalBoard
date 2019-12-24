@@ -1,12 +1,9 @@
 #pragma once
 
+#include "../Game/StateHandler.h"
+
 namespace Game
 {
-
-	// base for statemanagers
-	// has to define Data as datastructure
-	// has to define CanRestore as bool
-	//   if is able to restore
 	struct StateManagerView
 	{
 	public:
@@ -27,7 +24,7 @@ namespace Game
 
 		// called on restore. returns if
 		// restore is successfull
-		virtual bool Restore() = 0;
+		// virtual bool Restore() = 0;
 		
 		// called to ask for finish of
 		// this state. returns if is currently

@@ -2,9 +2,11 @@
 
 namespace Game
 {
-	struct GameState
+	typedef unsigned char GameState;
+
+	struct GameStateRaw
 	{
-		enum : unsigned char
+		enum : GameState
 		{
 			// zero for fresh start / clean
 			Shutdown = 0,

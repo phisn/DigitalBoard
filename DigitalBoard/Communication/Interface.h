@@ -1,22 +1,30 @@
 #pragma once
 
+#include "../Device/FaultHandler.h"
 #include "../Game/GameContext.h"
-#include "../Game/Collector.h"
+#include "../Game/CollectData.h"
 
 namespace Communication
 {
 	template <typename StateContainer>
-	struct Interface
+	class Interface
 		:
-		public InterfaceContainer<StateContainer>
+		public Game::StateHandler<StateContainer>
 	{
+	public:
 		virtual ~Interface()
 		{
 		}
 
-		virtual void initialize(const Game::PlayerId id) = 0;
-		virtual const Game::PlayerId getPlayerId() const = 0;
+		virtual void initialize(const Game::PlayerId id)
+		{
+			this->id = id;
+		}
 
+		virtual void process() = 0;
 		virtual void notifyFault(const Device::Fault fault) = 0;
+
+	private:
+		Game::PlayerId id;
 	};
 }

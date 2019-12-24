@@ -1,15 +1,22 @@
 #include "GameController.h"
 
+#include "../Game/Collector.h"
+#include "../Game/GameSector.h"
+
+// can theoretically be accessed by
+// extern, but should normally not.
+// one of the exceptions is interfacemanager
+namespace Current
+{ 
+	Game::StateManagerView* stateView;
+	Game::GameContextView* contextView;
+	void* data;
+}
+
+
 namespace
 {
 	bool finishRequested = false;
-
-	namespace Current
-	{
-		Game::StateManagerView* stateView;
-		Game::GameContextView* contextView;
-		void* data;
-	}
 
 	Game::GameSector* sectorData;
 	Game::GameContextView* rootView;
@@ -17,7 +24,7 @@ namespace
 
 namespace Game
 {
-	namespace GameController
+	namespace Controller
 	{
 		void FinishState();
 
@@ -36,15 +43,15 @@ namespace Game
 
 			switch (sectorData->state)
 			{
-			case GameState::Shutdown:
+			case GameStateRaw::Shutdown:
 				// ...
 
 				break;
-			case GameState::Prerunning:
+			case GameStateRaw::Prerunning:
 				// ...
 
 				break;
-			case GameState::Error:
+			case GameStateRaw::Error:
 				// ...
 
 				break;
@@ -98,6 +105,11 @@ namespace Game
 
 		}
 
+		StateManagerView* GetStateManager()
+		{
+			return Current::stateView;
+		}
+
 		void FinishState()
 		{
 			if (Current::contextView->IsFinal())
@@ -121,7 +133,7 @@ namespace Game
 
 		bool Restore()
 		{
-			Current::contextView = rootView->FindContext(sectorData->state - GameState::_Length);
+			Current::contextView = rootView->FindContext(sectorData->state - GameStateRaw::_Length);
 			
 			if (!Current::contextView->CanRestore())
 			{
@@ -130,6 +142,11 @@ namespace Game
 
 			Current::data = rootView->GetContextData(Current::contextView, Current::data);
 			Current::stateView = Current::contextView->CreateState(Current::data);
+		}
+
+		GameStateRaw GetState()
+		{
+			return (GameStateRaw) sectorData->state;
 		}
 	}
 }

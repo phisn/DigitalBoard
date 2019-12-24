@@ -81,11 +81,11 @@
     <ClInclude Include="Common\Common.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="Common\StateContainer.h">
-      <Filter>Common</Filter>
+    <ClInclude Include="Game\StateHandler.h">
+      <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Communication\StateHandler.h">
-      <Filter>Communication</Filter>
+    <ClInclude Include="Game\StateContainer.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -113,10 +113,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Common.h" />
-    <ClInclude Include="Common\StateContainer.h" />
     <ClInclude Include="Communication\Interface.h" />
     <ClInclude Include="Communication\InterfaceManager.h" />
-    <ClInclude Include="Communication\StateHandler.h" />
     <ClInclude Include="Device\DeviceManager.h" />
     <ClInclude Include="Device\DevicePins.h" />
     <ClInclude Include="Device\ExecutionManager.h" />
@@ -132,6 +130,8 @@
     <ClInclude Include="Game\GameContext.h" />
     <ClInclude Include="Game\GameController.h" />
     <ClInclude Include="Game\GameSector.h" />
+    <ClInclude Include="Game\StateContainer.h" />
+    <ClInclude Include="Game\StateHandler.h" />
     <ClInclude Include="Game\StateManagerView.h" />
     <ClInclude Include="__vm\.DigitalBoard.vsarduino.h" />
   </ItemGroup>

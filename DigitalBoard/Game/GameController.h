@@ -1,14 +1,53 @@
 #pragma once
 
 #include "../Device/MemoryManager.h"
-
-#include "../Game/Collector.h"
 #include "../Game/GameContext.h"
-#include "../Game/GameSector.h"
 
 namespace Game
 {
-	namespace GameController
+	struct GameControllerView
+	{
+		virtual bool RequestFinish() = 0;
+		virtual void Save() = 0;
+	};
+
+	template <typename StateContainer>
+	class GameController
+		:
+		public GameControllerView
+	{
+		struct Data
+		{
+			GameSector sector;
+			GameContext<StateContainer>::Data context;
+		}* data;
+
+	public:
+		GameController()
+		{
+			data = (Data*) Device::MemoryManager::AllocateDynamic(sizeof(Data));
+
+			Device::MemoryManager::ReadSector(
+				Device::MemorySector::Game,
+				(char*) data);
+
+			current = &root;
+		}
+
+		bool RequestFinish() override
+		{
+		}
+
+		void Save() override
+		{
+		}
+
+	private:
+		GameContextView* current;
+		GameContext<StateContainer> root;
+	};
+
+	namespace _Controller
 	{
 		// should be called with needed
 		// states -> StateManagerViews
