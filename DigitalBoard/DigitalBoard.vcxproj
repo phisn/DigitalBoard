@@ -113,7 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Common.h" />
-    <ClInclude Include="Communication\Framework.h" />
     <ClInclude Include="Communication\Interface.h" />
     <ClInclude Include="Communication\InterfaceManager.h" />
     <ClInclude Include="Device\DeviceManager.h" />
@@ -126,6 +125,7 @@
     <ClInclude Include="Device\NetworkManager.h" />
     <ClInclude Include="Device\OutputManager.h" />
     <ClInclude Include="Device\StatusLED.h" />
+    <ClInclude Include="Framework.h" />
     <ClInclude Include="Game\CollectData.h" />
     <ClInclude Include="Game\Collector.h" />
     <ClInclude Include="Game\GameContext.h" />
