@@ -11,6 +11,11 @@ namespace Game
 		virtual void Save() = 0;
 	};
 
+	namespace ControllerAccess
+	{
+
+	}
+
 	template <typename StateContainer>
 	class GameController
 		:
@@ -20,18 +25,50 @@ namespace Game
 		{
 			GameSector sector;
 			GameContext<StateContainer>::Data context;
-		}* data;
+		};
+
+		GameSector* dataSector;
+		void* dataContext;
 
 	public:
 		GameController()
 		{
-			data = (Data*) Device::MemoryManager::AllocateDynamic(sizeof(Data));
+			Data* const dataPtr = (Data*) Device::MemoryManager::AllocateDynamic(sizeof(Data));
 
 			Device::MemoryManager::ReadSector(
 				Device::MemorySector::Game,
-				(char*) data);
+				(char*)dataPtr);
 
-			current = &root;
+			dataSector = &dataPtr->sector;
+			dataContext = (void*) &dataPtr->context;
+
+			switch (dataSector->state)
+			{
+			}
+
+			currentContext = &root;
+			currentManager = root.CreateState(dataContext);
+		}
+
+		bool Process()
+		{
+			if (finishRequested)
+			{
+				finishRequested = false;
+				FinishState();
+
+				return false;
+			}
+
+			const bool result = currentManager->Process();
+
+			if (result)
+			{
+				Save();
+				currentManager->UpdateRep();
+			}
+
+			return result;
 		}
 
 		bool RequestFinish() override
@@ -43,46 +80,15 @@ namespace Game
 		}
 
 	private:
-		GameContextView* current;
-		GameContext<StateContainer> root;
-	};
-
-	namespace _Controller
-	{
-		// should be called with needed
-		// states -> StateManagerViews
-		template <typename... States>
-		void Initialize()
+		void FinishState()
 		{
-			static GameContext<States...> context;
-
-			struct Data
-			{
-				GameSector sector;
-				decltype(context)::Data context;
-			};
-
-			Initialize(
-				(GameContextView*) &context,
-				Device::MemoryManager::AllocateDynamic(sizeof(Data))
-			);
 		}
 
-		// should normaly not be called
-		// is used by template initialize
-		void Initialize(GameContextView* rootView, void* const data);
-		
-		// return indicates if data
-		// has changed. important for
-		// communication layer
-		bool Process(); 
-		
-		// finish allow, if return is true
-		bool RequestFinish();
+		GameContextView* currentContext;
+		StateManagerView* currentManager;
 
-		// manually saves data to sector
-		// should normally not be called
-		// by other modules. stay for debug
-		void Save();
-	}
+		bool finishRequested = false;
+
+		GameContext<StateContainer> root;
+	};
 }

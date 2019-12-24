@@ -87,6 +87,7 @@
     <ClInclude Include="Game\StateContainer.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="Communication\Framework.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\GameController.cpp">

@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Common.h" />
+    <ClInclude Include="Communication\Framework.h" />
     <ClInclude Include="Communication\Interface.h" />
     <ClInclude Include="Communication\InterfaceManager.h" />
     <ClInclude Include="Device\DeviceManager.h" />
