@@ -128,7 +128,7 @@
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Game\CollectData.h" />
     <ClInclude Include="Game\Collector.h" />
-    <ClInclude Include="Game\GameContext.h" />
+    <ClInclude Include="Game\StateContext.h" />
     <ClInclude Include="Game\GameController.h" />
     <ClInclude Include="Game\GameSector.h" />
     <ClInclude Include="Game\StateContainer.h" />

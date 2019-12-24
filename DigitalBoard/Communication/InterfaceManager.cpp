@@ -6,7 +6,7 @@
 namespace Current
 {
 	extern Game::StateManagerView* stateView;
-	extern Game::GameContextView* contextView;
+	extern Game::StateContextView* contextView;
 }
 
 namespace Communication

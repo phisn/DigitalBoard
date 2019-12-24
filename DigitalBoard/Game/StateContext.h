@@ -7,10 +7,10 @@
 
 namespace Game
 {
-	struct GameContextView
+	struct StateContextView
 	{
-		virtual GameContextView* FindContext(const int index) = 0;
-		virtual int FindIndex(GameContextView* const context) = 0;
+		virtual StateContextView* FindContext(const int index) = 0;
+		virtual int FindIndex(StateContextView* const context) = 0;
 		virtual StateManagerView* CreateState(void* const data) = 0;
 
 		virtual void VisitHandler(
@@ -33,7 +33,7 @@ namespace Game
 			return GetDataOffset(FindContext(index));
 		}
 
-		int GetDataOffset(GameContextView* const context)
+		int GetDataOffset(StateContextView* const context)
 		{
 			return GetRemainingDataSize() - context->GetRemainingDataSize();
 		}
@@ -46,7 +46,7 @@ namespace Game
 		}
 
 		void* GetContextData(
-			GameContextView* const context, 
+			StateContextView* const context, 
 			void* const data)
 		{
 			return (void*) ((ptrdiff_t) data + GetDataOffset(context));
@@ -54,9 +54,9 @@ namespace Game
 	};
 
 	template <typename State>
-	struct GameContextBase
+	struct StateContextBase
 		:
-		public GameContextView
+		public StateContextView
 	{
 		StateManagerView* CreateState(void* const data) override
 		{
@@ -82,19 +82,19 @@ namespace Game
 	};
 
 	template <typename StateContainer>
-	struct GameContext
+	struct StateContext
 	{
-		static_assert(false, "GameContext only accepts StateContainer");
+		static_assert(false, "StateContext only accepts StateContainer");
 	};
 
 	template <typename State>
-	struct GameContext<StateContainer<State>>
+	struct StateContext<StateContainer<State>>
 		:
-		public GameContextBase<State>
+		public StateContextBase<State>
 	{
 		typedef State::Data Data;
 
-		GameContextView* FindContext(const int index) override
+		StateContextView* FindContext(const int index) override
 		{
 			if (next != 0)
 			{
@@ -104,7 +104,7 @@ namespace Game
 			return this;
 		}
 
-		int FindIndex(GameContextView* const context) override
+		int FindIndex(StateContextView* const context) override
 		{
 			if (context != this)
 			{
@@ -126,11 +126,11 @@ namespace Game
 	};
 
 	template <typename State, typename... States>
-	struct GameContext<StateContainer<State, States...>>
+	struct StateContext<StateContainer<State, States...>>
 		:
-		public GameContextBase<State>
+		public StateContextBase<State>
 	{
-		typedef GameContext<StateContainer<States...>> Next;
+		typedef StateContext<StateContainer<States...>> Next;
 
 		struct Data
 			:
@@ -139,7 +139,7 @@ namespace Game
 			State::Data data;
 		};
 
-		GameContextView* FindContext(const int index) override
+		StateContextView* FindContext(const int index) override
 		{
 			if (index == 0)
 			{
@@ -151,7 +151,7 @@ namespace Game
 			}
 		}
 
-		int FindIndex(GameContextView* const context) override
+		int FindIndex(StateContextView* const context) override
 		{
 			if (context == this)
 			{

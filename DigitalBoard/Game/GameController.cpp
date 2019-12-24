@@ -1,15 +1,16 @@
 #include "GameController.h"
 
-#include "../Game/Collector.h"
-#include "../Game/GameSector.h"
-
 // can theoretically be accessed by
 // extern, but should normally not.
 // one of the exceptions is interfacemanager
+
+Game::GameControllerView* Game::GameControllerView::instance = NULL;
+
+/*
 namespace Current
 { 
 	Game::StateManagerView* stateView;
-	Game::GameContextView* contextView;
+	Game::StateContextView* contextView;
 	void* data;
 }
 
@@ -19,7 +20,7 @@ namespace
 	bool finishRequested = false;
 
 	Game::GameSector* sectorData;
-	Game::GameContextView* rootView;
+	Game::StateContextView* rootView;
 }
 
 namespace Game
@@ -30,7 +31,7 @@ namespace Game
 
 		bool Restore();
 
-		void Initialize(GameContextView* rootView, void* const data)
+		void Initialize(StateContextView* rootView, void* const data)
 		{
 			sectorData = (Game::GameSector*) data;
 			Current::data = (void*)((ptrdiff_t) data + sizeof(Game::GameSector));
@@ -150,3 +151,4 @@ namespace Game
 		}
 	}
 }
+*/
