@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Device/FaultHandler.h"
-#include "../Game/StateContext.h"
+#include "../Game/StateFactory.h"
 #include "../Game/CollectData.h"
 
 namespace Communication

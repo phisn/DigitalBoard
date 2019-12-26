@@ -11,8 +11,18 @@ namespace Game
 	struct RestoreEventHandlerDefault;
 	struct RestoreEventHandler
 	{
-		constexpr static Event event = Event::Restore;
 		typedef RestoreEventHandlerDefault Default;
+		constexpr static Event event = Event::Restore;
+
+		virtual bool Ask(void* sector) = 0;
+	};
+
+	struct RestoreEventHandlerDefault
+	{
+		bool Ask(void* sector)
+		{
+			return false;
+		}
 	};
 
 	template <typename EventHandler>

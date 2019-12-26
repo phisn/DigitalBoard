@@ -10,7 +10,7 @@ Game::GameControllerView* Game::GameControllerView::instance = NULL;
 namespace Current
 { 
 	Game::StateManagerView* stateView;
-	Game::StateContextView* contextView;
+	Game::StateFactoryView* contextView;
 	void* data;
 }
 
@@ -20,7 +20,7 @@ namespace
 	bool finishRequested = false;
 
 	Game::GameSector* sectorData;
-	Game::StateContextView* rootView;
+	Game::StateFactoryView* rootView;
 }
 
 namespace Game
@@ -31,7 +31,7 @@ namespace Game
 
 		bool Restore();
 
-		void Initialize(StateContextView* rootView, void* const data)
+		void Initialize(StateFactoryView* rootView, void* const data)
 		{
 			sectorData = (Game::GameSector*) data;
 			Current::data = (void*)((ptrdiff_t) data + sizeof(Game::GameSector));

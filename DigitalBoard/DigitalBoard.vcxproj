@@ -125,11 +125,12 @@
     <ClInclude Include="Device\NetworkManager.h" />
     <ClInclude Include="Device\OutputManager.h" />
     <ClInclude Include="Device\StatusLED.h" />
-    <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Game\CollectData.h" />
     <ClInclude Include="Game\Collector.h" />
+    <ClInclude Include="Game\EventHandler.h" />
     <ClInclude Include="Game\StateContext.h" />
+    <ClInclude Include="Game\StateFactory.h" />
     <ClInclude Include="Game\GameController.h" />
     <ClInclude Include="Game\GameSector.h" />
     <ClInclude Include="Game\StateContainer.h" />
@@ -148,8 +149,8 @@
     <ClCompile Include="Device\NetworkManager.cpp" />
     <ClCompile Include="Device\OutputManager.cpp" />
     <ClCompile Include="Device\StatusLED.cpp" />
-    <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="Game\Collector.cpp" />
+    <ClCompile Include="Game\EventHandler.cpp" />
     <ClCompile Include="Game\GameController.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

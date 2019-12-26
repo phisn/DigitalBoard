@@ -3,9 +3,9 @@
 #include "../Device/MemoryManager.h"
 
 #include "../Game/Collector.h"
-#include "../Game/StateContext.h"
+#include "../Game/EventHandler.h"
 #include "../Game/GameSector.h"
-
+#include "../Game/StateFactory.h"
 
 namespace Game
 {
@@ -42,13 +42,13 @@ namespace Game
 		struct Data
 		{
 			GameSector sector;
-			StateContext<StateContainer>::Data context;
+			StateFactory<StateContainer>::Data context;
 		};
 
 		GameSector* dataSector;
 
 	public:
-		typedef StateContext<StateContainer> Context;
+		typedef StateFactory<StateContainer> Context;
 
 		GameController()
 			:
@@ -71,11 +71,14 @@ namespace Game
 				break;
 
 			default:
-				if ()
+				if (Restore())
+				{
+					return;
+				}
 			}
 
-			stateIterator.context = &root;
-			stateIterator.manager = root.CreateState(stateIterator.data);
+			stateIterator.context = &rootContext;
+			stateIterator.manager = rootContext.CreateState(stateIterator.data);
 		}
 
 		bool Process()
@@ -114,6 +117,20 @@ namespace Game
 		}
 
 	private:
+		bool Restore()
+		{
+			stateIterator.context = rootContext.FindContext(dataSector->state - GameStateRaw::_Length);
+			
+			if (!stateIterator.context->CanRestore())
+			{
+				return false;
+			}
+
+			if (!eventHandlerManager.Get<RestoreEventHandler>()->Ask())
+			{
+			}
+		}
+
 		void FinishState()
 		{
 			if (stateIterator.context->IsFinal())
@@ -132,7 +149,7 @@ namespace Game
 
 		struct StateIterator
 		{
-			StateContextView* context;
+			StateFactoryView* context;
 			StateManagerView* manager;
 			void* data;
 
@@ -140,6 +157,7 @@ namespace Game
 
 		bool finishRequested = false;
 
-		StateContext<StateContainer> root;
+		EventHandlerManager eventHandlerManager;
+		StateFactory<StateContainer> rootContext;
 	};
 }
