@@ -88,6 +88,7 @@
     <ClInclude Include="Game\StateContext.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="EventHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\GameController.cpp">
@@ -126,5 +127,6 @@
     <ClCompile Include="Game\Collector.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="EventHandler.cpp" />
   </ItemGroup>
 </Project>
