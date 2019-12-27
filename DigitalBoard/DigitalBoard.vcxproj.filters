@@ -16,6 +16,9 @@
     <Filter Include="Common">
       <UniqueIdentifier>{62ed0d98-65d1-4f59-9b44-92997602350c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{6e124eae-897f-46bc-91a5-00f0e1e47ccd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DigitalBoard.ino" />
@@ -84,15 +87,17 @@
     <ClInclude Include="Game\StateContainer.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Framework.h" />
-    <ClInclude Include="Game\EventHandler.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game\StateFactory.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\StateContext.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Framework.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Event.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,9 +135,6 @@
       <Filter>Communication</Filter>
     </ClCompile>
     <ClCompile Include="Game\Collector.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\EventHandler.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>

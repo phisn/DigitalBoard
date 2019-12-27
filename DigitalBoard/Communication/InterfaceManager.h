@@ -8,6 +8,11 @@ namespace Communication
 	class InterfaceManager
 	{
 	public:
+		InterfaceManager(
+			)
+		{
+		}
+
 		void initialize()
 		{
 		}

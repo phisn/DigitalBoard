@@ -10,7 +10,7 @@ namespace Game
 	struct StateFactoryView
 	{
 		virtual StateFactoryView* FindFactory(const int index) = 0;
-		virtual int FindIndex(StateFactoryView* const context) = 0;
+		virtual int FindIndex(StateFactoryView* const stateContext) = 0;
 		virtual StateManagerView* CreateState(void* const data) = 0;
 
 		virtual void VisitHandler(
@@ -33,9 +33,9 @@ namespace Game
 			return GetDataOffset(FindFactory(index));
 		}
 
-		int GetDataOffset(StateFactoryView* const context)
+		int GetDataOffset(StateFactoryView* const stateContext)
 		{
-			return GetRemainingDataSize() - context->GetRemainingDataSize();
+			return GetRemainingDataSize() - stateContext->GetRemainingDataSize();
 		}
 
 		void* GetContextData(
@@ -46,10 +46,10 @@ namespace Game
 		}
 
 		void* GetContextData(
-			StateFactoryView* const context, 
+			StateFactoryView* const stateContext, 
 			void* const data)
 		{
-			return (void*) ((ptrdiff_t) data + GetDataOffset(context));
+			return (void*) ((ptrdiff_t) data + GetDataOffset(stateContext));
 		}
 	};
 
@@ -60,7 +60,7 @@ namespace Game
 	{
 		StateManagerView* CreateState(void* const data) override
 		{
-			return new State((State::Data*) data);
+			return Device::MemoryManager::AllocateDynamic<State>((State::Data*) data);
 		}
 
 		void VisitHandler(
@@ -104,9 +104,9 @@ namespace Game
 			return this;
 		}
 
-		int FindIndex(StateFactoryView* const context) override
+		int FindIndex(StateFactoryView* const stateContext) override
 		{
-			if (context != this)
+			if (stateContext != this)
 			{
 				// error
 			}
@@ -151,15 +151,15 @@ namespace Game
 			}
 		}
 
-		int FindIndex(StateFactoryView* const context) override
+		int FindIndex(StateFactoryView* const stateContext) override
 		{
-			if (context == this)
+			if (stateContext == this)
 			{
 				return 0;
 			}
 			else
 			{
-				return next.FindIndex(context) + 1;
+				return next.FindIndex(stateContext) + 1;
 			}
 		}
 

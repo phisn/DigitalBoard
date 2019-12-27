@@ -120,7 +120,7 @@ namespace Game
 
 			delete Current::stateView;
 
-			// set data and context of index 1
+			// set data and stateContext of index 1
 			// -> set to next
 
 			// data is before contextview, because in

@@ -31,13 +31,13 @@ namespace Game
 		void Create() override;
 		
 		bool Process() override;
+		bool Restore() override;
 		bool Finish() override; 
 
 		void UpdateRep() override;
 		
 		// playerid is not player index
 		// playerid is a random number
-
 		PlayerId CreatePlayer();
 		bool RemovePlayer(const PlayerId player);
 		bool ExistsPlayer(const PlayerId player) const;

@@ -52,6 +52,15 @@ namespace Device
 		void CleanEEPROM();
 
 		void* AllocateDynamic(const unsigned long length);
+
+		template <typename T, typename... Args>
+		T* AllocateDynamic(Args&&... args)
+		{
+			T* const t = (T*) AllocateDynamic(sizeof(T));
+			new (t) T(std::forward<Args>(args...));
+			return t;
+		}
+
 		void DeallocateDynamic(void* memory);
 	}
 }

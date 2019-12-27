@@ -2,8 +2,9 @@
 
 #include "../Device/MemoryManager.h"
 
+#include "../Framework/Event.h"
+
 #include "../Game/Collector.h"
-#include "../Game/EventHandler.h"
 #include "../Game/GameSector.h"
 #include "../Game/StateContext.h"
 #include "../Game/StateFactory.h"
@@ -13,26 +14,8 @@ namespace Game
 	class GameControllerView
 	{
 	public:
-		GameControllerView()
-		{
-			instance = this;
-		}
-
 		virtual bool RequestFinish() = 0;
 		virtual void Save() = 0;
-
-		static GameControllerView* Access()
-		{
-			if (instance == NULL)
-			{
-				// error
-			}
-
-			return instance;
-		}
-
-	private:
-		static GameControllerView* instance;
 	};
 
 	template <typename StateContainer>
@@ -43,17 +26,16 @@ namespace Game
 		struct Data
 		{
 			GameSector sector;
-			StateFactory<StateContainer>::Data context;
+			StateFactory<StateContainer>::Data stateContext;
 		} data;
 
 	public:
 		typedef StateFactory<StateContainer> Context;
 
-		GameController(EventHandlerContainer* const container)
+		GameController(EventConfigurator* const container)
 			:
 			eventHandlerManager(container),
-			context(&rootFactory, (void*) &data),
-			GameControllerView()
+			stateContext(&rootFactory, (void*) &data)
 		{
 			Device::MemoryManager::ReadSector(
 				Device::MemorySector::Game,
@@ -73,8 +55,8 @@ namespace Game
 				}
 			}
 
-			context.Begin();
-			context->Create();
+			stateContext.Begin();
+			stateContext->Create();
 		}
 
 		bool Process()
@@ -87,12 +69,12 @@ namespace Game
 				return false;
 			}
 
-			const bool result = context->Process();
+			const bool result = stateContext->Process();
 
 			if (result)
 			{
 				Save();
-				context->UpdateRep();
+				stateContext->UpdateRep();
 			}
 
 			return result;
@@ -100,7 +82,7 @@ namespace Game
 
 		bool RequestFinish() override
 		{
-			if (!finishRequested && context->Finish())
+			if (!finishRequested && stateContext->Finish())
 			{
 				finishRequested = true;
 			}
@@ -122,31 +104,33 @@ namespace Game
 				return false;
 			}
 
-			RestoreEventData data(factory, context.getData());
+			RestoreEventData data(factory, stateContext.getData());
 			if (!eventHandlerManager.Get<RestoreEventHandler>()->Ask(&data))
 			{
 				return false;
 			}
 
-			context.Begin(factory);
-			context->Restore();
+			stateContext.Begin(factory);
+			stateContext->Restore();
+
+			return true;
 		}
 
 		void FinishState()
 		{
-			if (context.getFactory()->IsFinal())
+			if (stateContext.getFactory()->IsFinal())
 			{
 				// request restart or error
 			}
 
-			context.Next();
-			context->Create();
+			stateContext.Next();
+			stateContext->Create();
 		}
 
 		bool finishRequested = false;
 
-		EventHandlerManager eventHandlerManager;
-		StateContext context;
+		EventConfiguration eventHandlerManager;
+		StateContext stateContext;
 		StateFactory<StateContainer> rootFactory;
 	};
 }

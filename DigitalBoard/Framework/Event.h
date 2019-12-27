@@ -2,7 +2,7 @@
 
 #include "../Game/StateFactory.h"
 
-namespace Game
+namespace Framework
 {
 	enum class Event
 	{
@@ -13,7 +13,7 @@ namespace Game
 	class RestoreEventData
 	{
 	public:
-		RestoreEventData(StateFactoryView* const factory, void* const data)
+		RestoreEventData(Game::StateFactoryView* const factory, void* const data)
 			:
 			factory(factory),
 			data(data)
@@ -27,7 +27,7 @@ namespace Game
 		}
 
 	private:
-		StateFactoryView* const factory;
+		Game::StateFactoryView* const factory;
 		void* const data;
 	};
 
@@ -51,7 +51,7 @@ namespace Game
 	};
 
 	template <typename EventHandler>
-	struct _EventHandlerContainerBase
+	struct _EventConfiguratorBase
 	{
 		EventHandler* handler = NULL;
 
@@ -78,12 +78,12 @@ namespace Game
 	};
 
 	template <typename EventHandler, typename... V>
-	class _EventHandlerContainer;
+	class _EventConfigurator;
 
 	template <typename EventHandler>
-	class _EventHandlerContainer<EventHandler>
+	class _EventConfigurator<EventHandler>
 		:
-		private _EventHandlerContainerBase<EventHandler>
+		private _EventConfiguratorBase<EventHandler>
 	{
 	public:
 		template <typename OtherHandler>
@@ -103,7 +103,7 @@ namespace Game
 		}
 
 		// assign should not be called outside of 
-		// EventHandlerManager. all handlers will be
+		// EventConfiguration. all handlers will be
 		// cleared to prevent accidental double
 		// deletion
 		inline void Assign(void** eventHandlers)
@@ -113,9 +113,9 @@ namespace Game
 	};
 
 	template <typename EventHandler, typename... V>
-	class _EventHandlerContainer
+	class _EventConfigurator
 		:
-		private _EventHandlerContainerBase<EventHandler>
+		private _EventConfiguratorBase<EventHandler>
 	{
 	public:
 		template <typename OtherHandler>
@@ -140,25 +140,25 @@ namespace Game
 		}
 
 	private:
-		_EventHandlerContainer<V...> next;
+		_EventConfigurator<V...> next;
 	};
 
-	// default implementation for EventHandlerContainer.
+	// default implementation for EventConfigurator.
 	// should normally allways be used
-	typedef _EventHandlerContainer<RestoreEventHandler> EventHandlerContainer;
+	typedef _EventConfigurator<RestoreEventHandler> EventConfigurator;
 
-	class EventHandlerManager
+	class EventConfiguration
 	{
 	public:
-		EventHandlerManager(EventHandlerContainer* const container)
+		EventConfiguration(EventConfigurator* const configurator)
 		{
-			container->Assign(eventHandlers);
+			configurator->Assign(eventHandlers);
 		}
 
 		template <typename EventHandler>
-		EventHandler* Get() const
+		EventHandler* GetHandler() const
 		{
-			return (EventHandler*)eventHandlers[(int)EventHandler::event];
+			return (EventHandler*)eventHandlers[(int) EventHandler::event];
 		}
 
 	private:

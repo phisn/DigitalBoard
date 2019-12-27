@@ -21,9 +21,4 @@ namespace Game
 	{
 		unsigned char state;
 	};
-
-	namespace Controller
-	{
-		GameState GetState();
-	}
 }

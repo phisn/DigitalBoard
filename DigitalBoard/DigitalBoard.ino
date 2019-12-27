@@ -1,16 +1,37 @@
-#include "Game/GameController.h"
+#include "Framework/Framework.h"
 
-enum class CustomGameState
+typedef Game::StateContainer<Game::Collector> StateContainer;
+typedef Framework::FrameworkConfiguration<StateContainer> FrameworkConfig;
+
+struct CustomRestoreHandler
+	:
+	Framework::RestoreEventHandler
 {
-	Collect
-};
+	bool Ask(Framework::RestoreEventData* const data) override
+	{
+		return true;
+	}
+} restoreHandler;
+
+
+Framework::Framework<FrameworkConfig>* framework;
 
 void setup() 
 {
-	Game::GameController::Initialize<Game::Collector>();
+	/*
+	
+	-	Config for interfaces. interfacecontainer?
+	-	additional configuration for device layer
+	-	more events
+	
+	*/
+
+	Framework::EventConfigurator configurator;
+	configurator.SetEventHandler(&restoreHandler);
+	framework = new Framework::Framework<FrameworkConfig>(&configurator);
 }
 
 void loop() 
 {
-  
+	framework->process();
 }

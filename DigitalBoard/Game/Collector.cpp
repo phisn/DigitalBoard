@@ -36,6 +36,12 @@ namespace Game
 		return false;
 	}
 
+	bool Collector::Restore()
+	{
+		// can not be restored
+		return false;
+	}
+
 	bool Collector::Finish()
 	{
 		return data->playerCount > 4;
