@@ -9,7 +9,7 @@ namespace Game
 {
 	struct StateFactoryView
 	{
-		virtual StateFactoryView* FindContext(const int index) = 0;
+		virtual StateFactoryView* FindFactory(const int index) = 0;
 		virtual int FindIndex(StateFactoryView* const context) = 0;
 		virtual StateManagerView* CreateState(void* const data) = 0;
 
@@ -19,7 +19,7 @@ namespace Game
 
 		StateManagerView* CreateIndexState(const int index, void* const data)
 		{
-			return FindContext(index)->CreateState(data);
+			return FindFactory(index)->CreateState(data);
 		}
 
 		virtual int GetRemainingDataSize() = 0;
@@ -30,7 +30,7 @@ namespace Game
 
 		int GetDataOffset(const int index)
 		{
-			return GetDataOffset(FindContext(index));
+			return GetDataOffset(FindFactory(index));
 		}
 
 		int GetDataOffset(StateFactoryView* const context)
@@ -94,7 +94,7 @@ namespace Game
 	{
 		typedef State::Data Data;
 
-		StateFactoryView* FindContext(const int index) override
+		StateFactoryView* FindFactory(const int index) override
 		{
 			if (next != 0)
 			{
@@ -139,7 +139,7 @@ namespace Game
 			State::Data data;
 		};
 
-		StateFactoryView* FindContext(const int index) override
+		StateFactoryView* FindFactory(const int index) override
 		{
 			if (index == 0)
 			{
@@ -147,7 +147,7 @@ namespace Game
 			}
 			else
 			{
-				return next.FindContext(index - 1);
+				return next.FindFactory(index - 1);
 			}
 		}
 

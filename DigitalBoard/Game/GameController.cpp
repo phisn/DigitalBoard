@@ -126,7 +126,7 @@ namespace Game
 			// data is before contextview, because in
 			// this way no temp variable is needed
 			Current::data = Current::contextView->GetContextData(1, Current::data);
-			Current::contextView = Current::contextView->FindContext(1);
+			Current::contextView = Current::contextView->FindFactory(1);
 			Current::stateView = Current::contextView->CreateState(Current::data);
 
 			Current::stateView->Create();
@@ -134,7 +134,7 @@ namespace Game
 
 		bool Restore()
 		{
-			Current::contextView = rootView->FindContext(sectorData->state - GameStateRaw::_Length);
+			Current::contextView = rootView->FindFactory(sectorData->state - GameStateRaw::_Length);
 			
 			if (!Current::contextView->CanRestore())
 			{

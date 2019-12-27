@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Game/StateFactory.h"
+
 namespace Game
 {
 	enum class Event
@@ -8,18 +10,41 @@ namespace Game
 		_Length
 	};
 
+	class RestoreEventData
+	{
+	public:
+		RestoreEventData(StateFactoryView* const factory, void* const data)
+			:
+			factory(factory),
+			data(data)
+		{
+		}
+
+		template <typename DataType = void>
+		DataType* Get(const int stateIndex)
+		{
+			return factory->GetContextData(stateIndex, data);
+		}
+
+	private:
+		StateFactoryView* const factory;
+		void* const data;
+	};
+
 	struct RestoreEventHandlerDefault;
 	struct RestoreEventHandler
 	{
 		typedef RestoreEventHandlerDefault Default;
 		constexpr static Event event = Event::Restore;
 
-		virtual bool Ask(void* sector) = 0;
+		virtual bool Ask(RestoreEventData* const data) = 0;
 	};
 
 	struct RestoreEventHandlerDefault
+		:
+		public RestoreEventHandler
 	{
-		bool Ask(void* sector)
+		bool Ask(RestoreEventData* const data) override
 		{
 			return false;
 		}
@@ -40,7 +65,7 @@ namespace Game
 
 			if (handler)
 			{
-				temp = (void*) handler;
+				temp = (void*)handler;
 				handler = NULL;
 			}
 			else
@@ -133,10 +158,10 @@ namespace Game
 		template <typename EventHandler>
 		EventHandler* Get() const
 		{
-			return (EventHandler*) eventHandlers[(int) EventHandler::event];
+			return (EventHandler*)eventHandlers[(int)EventHandler::event];
 		}
 
 	private:
-		void* eventHandlers[(int) Event::_Length];
+		void* eventHandlers[(int)Event::_Length];
 	};
 }

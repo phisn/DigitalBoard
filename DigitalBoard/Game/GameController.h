@@ -5,6 +5,7 @@
 #include "../Game/Collector.h"
 #include "../Game/EventHandler.h"
 #include "../Game/GameSector.h"
+#include "../Game/StateContext.h"
 #include "../Game/StateFactory.h"
 
 namespace Game
@@ -43,27 +44,22 @@ namespace Game
 		{
 			GameSector sector;
 			StateFactory<StateContainer>::Data context;
-		};
-
-		GameSector* dataSector;
+		} data;
 
 	public:
 		typedef StateFactory<StateContainer> Context;
 
-		GameController()
+		GameController(EventHandlerContainer* const container)
 			:
+			eventHandlerManager(container),
+			context(&rootFactory, (void*) &data),
 			GameControllerView()
 		{
-			Data* const dataPtr = (Data*) Device::MemoryManager::AllocateDynamic(sizeof(Data));
-
 			Device::MemoryManager::ReadSector(
 				Device::MemorySector::Game,
-				(char*)dataPtr);
+				(char*) &data);
 
-			dataSector = &dataPtr->sector;
-			stateIterator.data = (void*) &dataPtr->context;
-
-			switch (dataSector->state)
+			switch (data.sector.state)
 			{
 			case GameStateRaw::Shutdown:
 			case GameStateRaw::Prerunning:
@@ -77,8 +73,8 @@ namespace Game
 				}
 			}
 
-			stateIterator.context = &rootContext;
-			stateIterator.manager = rootContext.CreateState(stateIterator.data);
+			context.Begin();
+			context->Create();
 		}
 
 		bool Process()
@@ -91,12 +87,12 @@ namespace Game
 				return false;
 			}
 
-			const bool result = stateIterator.manager->Process();
+			const bool result = context->Process();
 
 			if (result)
 			{
 				Save();
-				stateIterator.manager->UpdateRep();
+				context->UpdateRep();
 			}
 
 			return result;
@@ -104,7 +100,7 @@ namespace Game
 
 		bool RequestFinish() override
 		{
-			if (!finishRequested && stateIterator.manager->Finish())
+			if (!finishRequested && context->Finish())
 			{
 				finishRequested = true;
 			}
@@ -119,45 +115,38 @@ namespace Game
 	private:
 		bool Restore()
 		{
-			stateIterator.context = rootContext.FindContext(dataSector->state - GameStateRaw::_Length);
-			
-			if (!stateIterator.context->CanRestore())
+			StateFactoryView* const factory = rootFactory.FindFactory(data.sector.state - GameStateRaw::_Length);
+
+			if (!factory->CanRestore())
 			{
 				return false;
 			}
 
-			if (!eventHandlerManager.Get<RestoreEventHandler>()->Ask())
+			RestoreEventData data(factory, context.getData());
+			if (!eventHandlerManager.Get<RestoreEventHandler>()->Ask(&data))
 			{
+				return false;
 			}
+
+			context.Begin(factory);
+			context->Restore();
 		}
 
 		void FinishState()
 		{
-			if (stateIterator.context->IsFinal())
+			if (context.getFactory()->IsFinal())
 			{
 				// request restart or error
 			}
 
-			delete stateIterator.manager;
-
-			stateIterator.data = stateIterator.context->GetContextData(1, stateIterator.data);
-			stateIterator.context = stateIterator.context->FindContext(1);
-			stateIterator.manager = stateIterator.context->CreateState(stateIterator.data);
-
-			stateIterator.manager->Create();
+			context.Next();
+			context->Create();
 		}
-
-		struct StateIterator
-		{
-			StateFactoryView* context;
-			StateManagerView* manager;
-			void* data;
-
-		} stateIterator;
 
 		bool finishRequested = false;
 
 		EventHandlerManager eventHandlerManager;
-		StateFactory<StateContainer> rootContext;
+		StateContext context;
+		StateFactory<StateContainer> rootFactory;
 	};
 }

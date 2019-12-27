@@ -24,8 +24,8 @@ namespace Game
 
 		// called on restore. returns if
 		// restore is successfull
-		// virtual bool Restore() = 0;
-		
+		virtual bool Restore() = 0;
+		 
 		// called to ask for finish of
 		// this state. returns if is currently
 		// able or allowed to finsh
