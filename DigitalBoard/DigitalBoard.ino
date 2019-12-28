@@ -3,6 +3,34 @@
 typedef Game::StateContainer<Game::Collector> StateContainer;
 typedef Framework::FrameworkConfiguration<StateContainer> FrameworkConfig;
 
+class SerialInterface
+	:
+	public Communication::Interface<StateContainer>
+{
+public:
+	void update(Game::Collector* const state) override
+	{
+		// print and save state
+		// Game::CollectorAccess::GetData();
+	}
+
+	void process() override
+	{
+		// if (state != Game::GameState::Running)
+		// {
+		//     read and process input
+		// }
+	}
+
+	void notifyFault(const Device::Fault fault) override
+	{
+		// print fault to serial
+	}
+
+private:
+	Game::GameState state;
+};
+
 struct CustomRestoreHandler
 	:
 	Framework::RestoreEventHandler
@@ -18,6 +46,7 @@ Framework::Framework<FrameworkConfig>* framework;
 
 void setup() 
 {
+
 	/*
 	
 	-	Config for interfaces. interfacecontainer?

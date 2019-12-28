@@ -4,12 +4,14 @@
 
 namespace Communication
 {
-	template <typename StateContainer>
+	template <
+		typename StateContainer,
+		typename InterfaceFactory
+	>
 	class InterfaceManager
 	{
 	public:
-		InterfaceManager(
-			)
+		InterfaceManager()
 		{
 		}
 
@@ -19,9 +21,21 @@ namespace Communication
 
 		void process(const bool update)
 		{
+			InterfaceFactory::Process();
+		}
+
+		template <typename InterfaceT>
+		void CreateInterface()
+		{
+			Interface<StateContainer>* const interface = InterfaceFactory::Create<InterfaceT>();
+			interface->initialize();
 		}
 
 	private:
 		Interface<StateContainer> interfaces[DEF_PLAYER_COUNT];
 	};
+
+	namespace InterfaceManagerAccess
+	{
+	}
 }

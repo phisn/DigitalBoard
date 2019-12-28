@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Communication\InterfaceManager.cpp" />
+    <ClCompile Include="Communication\InterfaceContainer.h" />
     <ClCompile Include="Device\DeviceManager.cpp" />
     <ClCompile Include="Device\ExecutionManager.cpp" />
     <ClCompile Include="Device\FailureHandler.cpp" />

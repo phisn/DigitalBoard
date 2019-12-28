@@ -137,5 +137,8 @@
     <ClCompile Include="Game\Collector.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Communication\InterfaceContainer.h">
+      <Filter>Communication</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

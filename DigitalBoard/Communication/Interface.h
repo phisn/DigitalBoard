@@ -27,4 +27,28 @@ namespace Communication
 	private:
 		Game::PlayerId id;
 	};
+
+	template <typename Interface, typename... Interfaces>
+	class InterfaceFactory;
+
+	template <typename Interface>
+	struct InterfaceFactory<Interface>
+	{
+		static void Process()
+		{
+			Interface::StaticProcess();
+		}
+	};
+
+	template <typename Interface, typename... Interfaces>
+	struct InterfaceFactory
+	{
+		typedef InterfaceFactory<Interfaces...> Next;
+
+		static void Process()
+		{
+			Interface::StaticProcess();
+			Next::Process();
+		}
+	};
 }
