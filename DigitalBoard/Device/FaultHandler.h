@@ -44,7 +44,7 @@ namespace Device
 		GameManager,
 		GameController,
 
-		InterfaceManager,
+		CommController,
 		WebInterface,
 
 		_Length

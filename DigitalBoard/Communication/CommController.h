@@ -8,10 +8,10 @@ namespace Communication
 		typename StateContainer,
 		typename InterfaceFactory
 	>
-	class InterfaceManager
+	class CommController
 	{
 	public:
-		InterfaceManager()
+		CommController()
 		{
 		}
 
@@ -35,7 +35,16 @@ namespace Communication
 		Interface<StateContainer> interfaces[DEF_PLAYER_COUNT];
 	};
 
-	namespace InterfaceManagerAccess
+	namespace CommControllerAccess
 	{
+		void _CreateInterface(InterfaceView* const interface);
+
+		template <typename InterfaceT>
+		InterfaceT CreateInterface()
+		{
+			InterfaceT* temp = new InterfaceT();
+			_CreateInterface((InterfaceView*) temp);
+			return temp;
+		}
 	}
 }

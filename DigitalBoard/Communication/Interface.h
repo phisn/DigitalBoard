@@ -6,6 +6,17 @@
 
 namespace Communication
 {
+	/*
+		
+		Add interfaces dynamically by external hidden force.
+		"StaticInterfaces" should be called on process / update
+		and be possible, to create new interfaces or do more
+		interface stuff like menus
+	
+	*/
+
+	typedef void InterfaceView;
+
 	template <typename StateContainer>
 	class Interface
 		:
@@ -26,29 +37,5 @@ namespace Communication
 
 	private:
 		Game::PlayerId id;
-	};
-
-	template <typename Interface, typename... Interfaces>
-	class InterfaceFactory;
-
-	template <typename Interface>
-	struct InterfaceFactory<Interface>
-	{
-		static void Process()
-		{
-			Interface::StaticProcess();
-		}
-	};
-
-	template <typename Interface, typename... Interfaces>
-	struct InterfaceFactory
-	{
-		typedef InterfaceFactory<Interfaces...> Next;
-
-		static void Process()
-		{
-			Interface::StaticProcess();
-			Next::Process();
-		}
 	};
 }

@@ -63,9 +63,6 @@
     <ClInclude Include="Communication\Interface.h">
       <Filter>Communication</Filter>
     </ClInclude>
-    <ClInclude Include="Communication\InterfaceManager.h">
-      <Filter>Communication</Filter>
-    </ClInclude>
     <ClInclude Include="Game\GameSector.h">
       <Filter>Game</Filter>
     </ClInclude>
@@ -99,6 +96,12 @@
     <ClInclude Include="Framework\Event.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Communication\RoutineContainer.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\CommController.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\GameController.cpp">
@@ -131,13 +134,13 @@
     <ClCompile Include="Device\StatusLED.cpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="Communication\InterfaceManager.cpp">
-      <Filter>Communication</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Collector.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Communication\InterfaceContainer.h">
+      <Filter>Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="Communication\CommController.cpp">
       <Filter>Communication</Filter>
     </ClCompile>
   </ItemGroup>

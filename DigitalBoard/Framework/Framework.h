@@ -7,13 +7,13 @@ namespace Framework
 {
 	template <
 		typename StateContainer,
-		typename InterfaceManager = Communication::InterfaceManager<StateContainer>,
+		typename CommController = Communication::CommController<StateContainer>,
 		typename GameController = Game::GameController<StateContainer>
 	>
 	struct FrameworkConfiguration
 	{
 		typedef StateContainer StateContainer;
-		typedef InterfaceManager InterfaceManager;
+		typedef CommController CommController;
 		typedef GameController GameController;
 	};
 
@@ -21,7 +21,7 @@ namespace Framework
 	class Framework
 	{
 		Configuration::GameController gameController;
-		Configuration::InterfaceManager interfaceManager;
+		Configuration::CommController interfaceManager;
 
 	public:
 		Framework(EventConfigurator* const eventConfigurator)

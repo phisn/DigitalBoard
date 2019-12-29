@@ -1,4 +1,4 @@
-#include "InterfaceManager.h"
+#include "CommManager.h"
 
 #include "../Game/Collector.h"
 #include "../Game/GameController.h"

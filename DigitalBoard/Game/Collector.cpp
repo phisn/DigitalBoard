@@ -47,10 +47,6 @@ namespace Game
 		return data->playerCount > 4;
 	}
 
-	void Collector::UpdateRep()
-	{
-	}
-
 	PlayerId Collector::CreatePlayer()
 	{
 		if (data->playerCount >= DEF_PLAYER_COUNT)

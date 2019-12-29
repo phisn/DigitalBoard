@@ -6,6 +6,20 @@
 
 Game::GameControllerView* Game::GameControllerView::instance = NULL;
 
+namespace Game
+{
+	namespace GameAccess
+	{
+		bool RequestFinish()
+		{
+		}
+
+		GameState GetState()
+		{
+		}
+	}
+}
+
 /*
 namespace Current
 { 

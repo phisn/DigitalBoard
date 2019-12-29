@@ -55,7 +55,7 @@ namespace Device
 
 		void InitializeCommunication()
 		{
-			Communication::InterfaceManager::Initialize();
+			Communication::CommController::Initialize();
 			Communication::WebServerManager::Initialize();
 			Communication::LcdAccess::Initialize();
 		}
@@ -65,7 +65,7 @@ namespace Device
 			NetworkManager::Process();
 			
 			const bool update = Game::Controller::Process();
-			Communication::InterfaceManager::Process(update);
+			Communication::CommController::Process(update);
 
 			FaultHandler::ValidateDeviceState();
 		}

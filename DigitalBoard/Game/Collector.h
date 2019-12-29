@@ -32,9 +32,8 @@ namespace Game
 		
 		bool Process() override;
 		bool Restore() override;
-		bool Finish() override; 
-
-		void UpdateRep() override;
+		bool Finish() override;
+		void UpdateRep() override { } // should be virtual later
 		
 		// playerid is not player index
 		// playerid is a random number

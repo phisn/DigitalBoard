@@ -21,7 +21,7 @@ namespace Framework
 		}
 
 		template <typename DataType = void>
-		DataType* Get(const int stateIndex)
+		const DataType* Get(const int stateIndex)
 		{
 			return factory->GetContextData(stateIndex, data);
 		}
