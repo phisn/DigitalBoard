@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Framework/Event/RestoreEvent.h"
+
 #include "../Game/CollectData.h"
 #include "../Game/StateManagerView.h"
 
@@ -54,4 +56,8 @@ namespace Game
 		// -1 if not found
 		int FindPlayerIndex(const PlayerId player);
 	}
+
+	struct CustomInterfaceJoinHandler
+	{
+	};
 }

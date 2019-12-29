@@ -114,6 +114,7 @@
   <ItemGroup>
     <ClInclude Include="Common\Common.h" />
     <ClInclude Include="Communication\CommController.h" />
+    <ClInclude Include="Communication\InterfaceManager.h" />
     <ClInclude Include="Communication\RoutineContainer.h" />
     <ClInclude Include="Communication\Interface.h" />
     <ClInclude Include="Device\DeviceManager.h" />
@@ -127,6 +128,8 @@
     <ClInclude Include="Device\OutputManager.h" />
     <ClInclude Include="Device\StatusLED.h" />
     <ClInclude Include="Framework\Event.h" />
+    <ClInclude Include="Framework\Event\InterfaceJoinEvent.h" />
+    <ClInclude Include="Framework\Event\RestoreEvent.h" />
     <ClInclude Include="Framework\Framework.h" />
     <ClInclude Include="Game\CollectData.h" />
     <ClInclude Include="Game\Collector.h" />
@@ -137,11 +140,10 @@
     <ClInclude Include="Game\StateContainer.h" />
     <ClInclude Include="Game\StateHandler.h" />
     <ClInclude Include="Game\StateManagerView.h" />
+    <ClInclude Include="InterfaceManager.h" />
     <ClInclude Include="__vm\.DigitalBoard.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Communication\CommController.cpp" />
-    <ClCompile Include="Communication\InterfaceContainer.h" />
     <ClCompile Include="Device\DeviceManager.cpp" />
     <ClCompile Include="Device\ExecutionManager.cpp" />
     <ClCompile Include="Device\FailureHandler.cpp" />
@@ -153,6 +155,7 @@
     <ClCompile Include="Device\StatusLED.cpp" />
     <ClCompile Include="Game\Collector.cpp" />
     <ClCompile Include="Game\GameController.cpp" />
+    <ClCompile Include="InterfaceManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

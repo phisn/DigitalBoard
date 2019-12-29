@@ -7,51 +7,19 @@ namespace Framework
 	enum class Event
 	{
 		Restore,
+		InterfaceJoin,
 		_Length
 	};
 
-	class RestoreEventData
+	struct EventConfiguratorView
 	{
-	public:
-		RestoreEventData(Game::StateFactoryView* const factory, void* const data)
-			:
-			factory(factory),
-			data(data)
-		{
-		}
-
-		template <typename DataType = void>
-		const DataType* Get(const int stateIndex)
-		{
-			return factory->GetContextData(stateIndex, data);
-		}
-
-	private:
-		Game::StateFactoryView* const factory;
-		void* const data;
-	};
-
-	struct RestoreEventHandlerDefault;
-	struct RestoreEventHandler
-	{
-		typedef RestoreEventHandlerDefault Default;
-		constexpr static Event event = Event::Restore;
-
-		virtual bool Ask(RestoreEventData* const data) = 0;
-	};
-
-	struct RestoreEventHandlerDefault
-		:
-		public RestoreEventHandler
-	{
-		bool Ask(RestoreEventData* const data) override
-		{
-			return false;
-		}
+		virtual void Assign(void** eventHandlers) = 0;
 	};
 
 	template <typename EventHandler>
-	struct _EventConfiguratorBase
+	struct EventConfiguratorBase
+		:
+		public EventConfiguratorView
 	{
 		EventHandler* handler = NULL;
 
@@ -78,12 +46,12 @@ namespace Framework
 	};
 
 	template <typename EventHandler, typename... V>
-	class _EventConfigurator;
+	class EventConfigurator;
 
 	template <typename EventHandler>
-	class _EventConfigurator<EventHandler>
+	class EventConfigurator<EventHandler>
 		:
-		private _EventConfiguratorBase<EventHandler>
+		private EventConfiguratorBase<EventHandler>
 	{
 	public:
 		template <typename OtherHandler>
@@ -106,16 +74,16 @@ namespace Framework
 		// EventConfiguration. all handlers will be
 		// cleared to prevent accidental double
 		// deletion
-		inline void Assign(void** eventHandlers)
+		void Assign(void** eventHandlers) override
 		{
 			eventHandlers[EventHandler::event] = Steal();
 		}
 	};
 
 	template <typename EventHandler, typename... V>
-	class _EventConfigurator
+	class EventConfigurator
 		:
-		private _EventConfiguratorBase<EventHandler>
+		private EventConfiguratorBase<EventHandler>
 	{
 	public:
 		template <typename OtherHandler>
@@ -133,24 +101,20 @@ namespace Framework
 		}
 
 		// ^^^
-		void Assign(void** eventHandlers)
+		void Assign(void** eventHandlers) override
 		{
 			eventHandlers[EventHandler::event] = Steal();
 			next.Assign(eventHandlers);
 		}
 
 	private:
-		_EventConfigurator<V...> next;
+		EventConfigurator<V...> next;
 	};
-
-	// default implementation for EventConfigurator.
-	// should normally allways be used
-	typedef _EventConfigurator<RestoreEventHandler> EventConfigurator;
 
 	class EventConfiguration
 	{
 	public:
-		EventConfiguration(EventConfigurator* const configurator)
+		EventConfiguration(EventConfiguratorView* const configurator)
 		{
 			configurator->Assign(eventHandlers);
 		}
@@ -158,7 +122,7 @@ namespace Framework
 		template <typename EventHandler>
 		EventHandler* GetHandler() const
 		{
-			return (EventHandler*)eventHandlers[(int) EventHandler::event];
+			return (EventHandler*) eventHandlers[(int) EventHandler::event];
 		}
 
 	private:

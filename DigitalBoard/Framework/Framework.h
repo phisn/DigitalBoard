@@ -1,13 +1,14 @@
 #pragma once
 
 #include "../Game/GameController.h"
-#include "../Communication/InterfaceManager.h"
+#include "../Communication/CommController.h"
 
 namespace Framework
 {
 	template <
 		typename StateContainer,
-		typename CommController = Communication::CommController<StateContainer>,
+		typename InterfaceFactory,
+		typename CommController = Communication::CommController<StateContaine>,
 		typename GameController = Game::GameController<StateContainer>
 	>
 	struct FrameworkConfiguration

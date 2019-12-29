@@ -19,6 +19,9 @@
     <Filter Include="Framework">
       <UniqueIdentifier>{6e124eae-897f-46bc-91a5-00f0e1e47ccd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Event">
+      <UniqueIdentifier>{4da49107-25a6-4207-b8c4-e5daeabb0615}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DigitalBoard.ino" />
@@ -102,6 +105,16 @@
     <ClInclude Include="Communication\CommController.h">
       <Filter>Communication</Filter>
     </ClInclude>
+    <ClInclude Include="InterfaceManager.h" />
+    <ClInclude Include="Communication\InterfaceManager.h">
+      <Filter>Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Event\InterfaceJoinEvent.h">
+      <Filter>Framework\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Event\RestoreEvent.h">
+      <Filter>Framework\Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\GameController.cpp">
@@ -137,11 +150,6 @@
     <ClCompile Include="Game\Collector.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Communication\InterfaceContainer.h">
-      <Filter>Communication</Filter>
-    </ClCompile>
-    <ClCompile Include="Communication\CommController.cpp">
-      <Filter>Communication</Filter>
-    </ClCompile>
+    <ClCompile Include="InterfaceManager.cpp" />
   </ItemGroup>
 </Project>
