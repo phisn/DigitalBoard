@@ -43,4 +43,12 @@ namespace Framework
 			return false;
 		}
 	};
+
+	template <>
+	struct EventHandlerDefinition<Event::Restore>
+	{
+		typedef RestoreEventHandler Handler;
+		typedef RestoreEventData Data;
+		typedef RestoreEventHandlerDefault DefaultHandler;
+	};
 }

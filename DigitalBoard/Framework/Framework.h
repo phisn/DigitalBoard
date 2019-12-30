@@ -1,23 +1,14 @@
 #pragma once
 
-#include "../Game/GameController.h"
 #include "../Communication/CommController.h"
+
+#include "../Framework/Event/InterfaceJoinEvent.h"
+#include "../Framework/Event/RestoreEvent.h"
+
+#include "../Game/GameController.h"
 
 namespace Framework
 {
-	template <
-		typename StateContainer,
-		typename InterfaceFactory,
-		typename CommController = Communication::CommController<StateContaine>,
-		typename GameController = Game::GameController<StateContainer>
-	>
-	struct FrameworkConfiguration
-	{
-		typedef StateContainer StateContainer;
-		typedef CommController CommController;
-		typedef GameController GameController;
-	};
-
 	template <typename Configuration>
 	class Framework
 	{
@@ -25,7 +16,7 @@ namespace Framework
 		Configuration::CommController interfaceManager;
 
 	public:
-		Framework(EventConfigurator* const eventConfigurator)
+		Framework(_EventConfigurator* const eventConfigurator)
 			:
 			eventConfiguration(eventConfigurator),
 			gameController(&eventConfiguration),

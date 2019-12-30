@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../Communication/Interface.h"
+#include "../../Framework/Event.h"
 
 namespace Framework
 {
@@ -25,5 +26,13 @@ namespace Framework
 		:
 		public InterfaceJoinHandler
 	{
+	};
+
+	template <>
+	struct EventHandlerDefinition<Event::InterfaceJoin>
+	{
+		typedef InterfaceJoinHandler Handler;
+		typedef InterfaceJoinEventData Data;
+		typedef InterfaceJoinHandlerDefault DefaultHandler;
 	};
 }

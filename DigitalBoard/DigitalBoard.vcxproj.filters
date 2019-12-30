@@ -93,9 +93,6 @@
     <ClInclude Include="Game\StateContext.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Framework.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Event.h">
       <Filter>Framework</Filter>
     </ClInclude>
@@ -114,6 +111,12 @@
     </ClInclude>
     <ClInclude Include="Framework\Event\RestoreEvent.h">
       <Filter>Framework\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Framework.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\EventConfigurator.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

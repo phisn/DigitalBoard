@@ -32,7 +32,7 @@ namespace Game
 	public:
 		typedef StateFactory<StateContainer> Context;
 
-		GameController(Framework::EventConfigurator* const container)
+		GameController(Framework::_EventConfigurator* const container)
 			:
 			eventHandlerManager(container),
 			stateContext(&rootFactory, (void*) &data)

@@ -1,7 +1,6 @@
 #include "Framework/Framework.h"
 
 typedef Game::StateContainer<Game::Collector> StateContainer;
-typedef Framework::FrameworkConfiguration<StateContainer> FrameworkConfig;
 
 class SerialInterface
 	:
@@ -42,7 +41,7 @@ struct CustomRestoreHandler
 } restoreHandler;
 
 
-Framework::Framework<FrameworkConfig>* framework;
+Framework::Framework<void>* framework;
 
 void setup() 
 {
@@ -57,7 +56,7 @@ void setup()
 
 	Framework::EventConfigurator configurator;
 	configurator.SetEventHandler(&restoreHandler);
-	framework = new Framework::Framework<FrameworkConfig>(&configurator);
+	framework = new Framework::Framework<void>(&configurator);
 }
 
 void loop() 

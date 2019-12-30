@@ -128,6 +128,7 @@
     <ClInclude Include="Device\OutputManager.h" />
     <ClInclude Include="Device\StatusLED.h" />
     <ClInclude Include="Framework\Event.h" />
+    <ClInclude Include="Framework\EventConfigurator.h" />
     <ClInclude Include="Framework\Event\InterfaceJoinEvent.h" />
     <ClInclude Include="Framework\Event\RestoreEvent.h" />
     <ClInclude Include="Framework\Framework.h" />
