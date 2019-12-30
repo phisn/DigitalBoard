@@ -47,7 +47,7 @@ namespace Game
 		return data->playerCount > 4;
 	}
 
-	PlayerId Collector::CreatePlayer()
+	bool Collector::CreatePlayer(const PlayerID playerID)
 	{
 		if (data->playerCount >= DEF_PLAYER_COUNT)
 		{
@@ -59,22 +59,9 @@ namespace Game
 				}, true);
 		}
 
-		PlayerId nextPlayerId;
-		while (true)
+		if (ExistsPlayer(playerID))
 		{
-			nextPlayerId = (PlayerId) rand();
-
-			for (int i = 0; i < data->playerCount; ++i)
-				if (nextPlayerId == data->playerIds[i])
-				{
-					nextPlayerId = 0;
-					break;
-				}
-
-			if (nextPlayerId != 0)
-			{
-				break;
-			}
+			return false;
 		}
 
 		data->playerIds[data->playerCount++] = nextPlayerId;
@@ -83,7 +70,7 @@ namespace Game
 		return nextPlayerId;
 	}
 
-	bool Collector::RemovePlayer(const PlayerId playerId)
+	bool Collector::RemovePlayer(const PlayerID playerId)
 	{
 		for (int i = 0; i < data->playerCount; ++i)
 			if (data->playerIds[i] == playerId)
@@ -102,19 +89,19 @@ namespace Game
 		return false;
 	}
 
-	bool Collector::ExistsPlayer(const PlayerId playerId) const
+	bool Collector::ExistsPlayer(const PlayerID playerId) const
 	{
 		return CollectorAccess::ExistsPlayer(playerId);
 	}
 
-	int Collector::FindPlayerIndex(const PlayerId playerId) const
+	int Collector::FindPlayerIndex(const PlayerID playerId) const
 	{
 		return CollectorAccess::FindPlayerIndex(playerId);
 	}
 
 	namespace CollectorAccess
 	{
-		bool ExistsPlayer(const PlayerId playerId)
+		bool ExistsPlayer(const PlayerID playerId)
 		{
 			for (int i = 0; i < data->playerCount; ++i)
 				if (data->playerIds[i] == playerId)
@@ -126,7 +113,7 @@ namespace Game
 		}
 
 		// -1 if not found
-		int FindPlayerIndex(const PlayerId playerId)
+		int FindPlayerIndex(const PlayerID playerId)
 		{
 			for (int i = 0; i < data->playerCount; ++i)
 				if (data->playerIds[i] == playerId)

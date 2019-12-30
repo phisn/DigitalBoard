@@ -39,7 +39,7 @@ namespace Communication
 			Type type{ Type::Running }; // 1 byte
 
 			int8_t playerCount;
-			Game::PlayerId currentPlayer;
+			Game::PlayerID currentPlayer;
 
 			/*	Villian		= 0,
 				Detective	= 1

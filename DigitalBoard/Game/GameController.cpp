@@ -4,22 +4,6 @@
 // extern, but should normally not.
 // one of the exceptions is interfacemanager
 
-Game::GameControllerView* Game::GameControllerView::instance = NULL;
-
-namespace Game
-{
-	namespace GameAccess
-	{
-		bool RequestFinish()
-		{
-		}
-
-		GameState GetState()
-		{
-		}
-	}
-}
-
 /*
 namespace Current
 { 

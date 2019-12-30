@@ -34,14 +34,14 @@ namespace Communication
 	{
 		void Initialize();
 
-		Game::PlayerId FindPlayerId(AsyncWebServerRequest* const request);
-		Game::PlayerId FindPlayerId(const Game::PlayerId suspected);
-		Game::PlayerId EnforcePlayerId(AsyncWebServerRequest* const request);
+		Game::PlayerID FindPlayerId(AsyncWebServerRequest* const request);
+		Game::PlayerID FindPlayerId(const Game::PlayerID suspected);
+		Game::PlayerID EnforcePlayerId(AsyncWebServerRequest* const request);
 
 		void RegisterWebInterface(WebInterface* const interface);
 		void UnregisterWebInterface(WebInterface* const interface);
 
-		WebInterface* FindWebInterface(const Game::PlayerId playerId);
+		WebInterface* FindWebInterface(const Game::PlayerID playerId);
 
 		void SendWebSocketData(
 			WebsocketId wid,

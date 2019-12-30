@@ -1,36 +1,38 @@
 #pragma once
 
 #include "../Communication/CommController.h"
-
-#include "../Framework/Event/InterfaceJoinEvent.h"
-#include "../Framework/Event/RestoreEvent.h"
-
+#include "../Framework/EventConfigurator.h"
 #include "../Game/GameController.h"
 
 namespace Framework
 {
-	template <typename Configuration>
+	template <typename StateContainer>
 	class Framework
 	{
-		Configuration::GameController gameController;
-		Configuration::CommController interfaceManager;
-
 	public:
-		Framework(_EventConfigurator* const eventConfigurator)
+		Framework(EventConfigurator* const eventConfigurator)
 			:
-			eventConfiguration(eventConfigurator),
-			gameController(&eventConfiguration),
-			interfaceManager(&eventConfiguration, &gameController)
+			eventConfig(eventConfigurator),
+			gameController(&eventConfig),
+			commController()
 		{
 		}
 
 		void process()
 		{
-			interfaceManager.process(gameController.Process());
+			commController.process(gameController.Process());
 			// ...
 		}
 
+		Game::GameControllerView* getGame()
+		{
+			return &gameController;
+		}
+
 	private:
-		EventConfiguration eventConfiguration;
+		Game::GameController<StateContainer> gameController;
+		Communication::CommController<StateContainer> commController;
+
+		EventConfiguration eventConfig;
 	};
 }

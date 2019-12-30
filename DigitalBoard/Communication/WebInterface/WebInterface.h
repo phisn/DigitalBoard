@@ -16,7 +16,7 @@ namespace Communication
 	{
 	public:
 		~WebInterface();
-		void initialize(const Game::PlayerId id) override;
+		void initialize(const Game::PlayerID id) override;
 
 		void notifyFault(const Device::Fault fault) override
 		{
@@ -44,7 +44,7 @@ namespace Communication
 			return webSocketId;
 		}
 
-		const Game::PlayerId getPlayerId() const
+		const Game::PlayerID getPlayerId() const
 		{
 			return playerId;
 		}
@@ -62,6 +62,6 @@ namespace Communication
 		unsigned long timerLast = 0;
 
 		Game::GameState lastState;
-		Game::PlayerId playerId;
+		Game::PlayerID playerId;
 	};
 }

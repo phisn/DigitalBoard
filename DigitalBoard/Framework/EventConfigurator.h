@@ -2,7 +2,7 @@
 
 #include "../Framework/Event.h"
 
-#include "../Framework/Event/InterfaceJoinEvent.h"
+#include "../Framework/Event/InterfacePushEvent.h"
 #include "../Framework/Event/RestoreEvent.h"
 
 namespace Framework
@@ -81,7 +81,7 @@ namespace Framework
 	template <int event>
 	class _EventConfigurator
 		:
-		private _EventConfiguratorBase<event>
+		public _EventConfiguratorBase<event>
 	{
 	public:
 		template <typename OtherHandler>

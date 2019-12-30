@@ -32,9 +32,9 @@ namespace Game
 	public:
 		typedef StateFactory<StateContainer> Context;
 
-		GameController(Framework::_EventConfigurator* const container)
+		GameController(Framework::EventConfiguration* const eventConfig)
 			:
-			eventHandlerManager(container),
+			eventConfiguration(eventConfig),
 			stateContext(&rootFactory, (void*) &data)
 		{
 			Device::MemoryManager::ReadSector(
@@ -105,7 +105,7 @@ namespace Game
 			}
 
 			Framework::RestoreEventData data(factory, stateContext.getData());
-			if (!eventHandlerManager.GetHandler<Framework::RestoreEventHandler>()->Ask(&data))
+			if (!eventConfiguration->GetHandler<Framework::RestoreEventHandler>()->Ask(&data))
 			{
 				return false;
 			}
@@ -129,14 +129,8 @@ namespace Game
 
 		bool finishRequested = false;
 
-		Framework::EventConfiguration eventHandlerManager;
+		Framework::EventConfiguration* const eventConfiguration;
 		StateContext stateContext;
 		StateFactory<StateContainer> rootFactory;
 	};
-
-	namespace GameAccess
-	{
-		bool RequestFinish();
-		GameState GetState();
-	}
 }

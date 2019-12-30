@@ -102,21 +102,26 @@
     <ClInclude Include="Communication\CommController.h">
       <Filter>Communication</Filter>
     </ClInclude>
-    <ClInclude Include="InterfaceManager.h" />
     <ClInclude Include="Communication\InterfaceManager.h">
       <Filter>Communication</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Event\InterfaceJoinEvent.h">
-      <Filter>Framework\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Event\RestoreEvent.h">
-      <Filter>Framework\Event</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Framework.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\EventConfigurator.h">
       <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Event\InterfacePushEvent.h">
+      <Filter>Framework\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Event\RestoreEvent.h">
+      <Filter>Framework\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Event\InterfaceRemoveEvent.h">
+      <Filter>Framework\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Event\InterfaceLinkEvent.h">
+      <Filter>Framework\Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +158,5 @@
     <ClCompile Include="Game\Collector.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="InterfaceManager.cpp" />
   </ItemGroup>
 </Project>

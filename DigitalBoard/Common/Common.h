@@ -38,3 +38,7 @@ inline void* operator new(unsigned, void* ptr)
 #ifndef DEF_PLAYER_COUNT
 #define DEF_PLAYER_COUNT 4
 #endif
+
+#ifndef DEF_INTERFACE_COUNT
+#define DEF_INTERFACE_COUNT DEF_PLAYER_COUNT
+#endif

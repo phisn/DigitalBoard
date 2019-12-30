@@ -2,14 +2,6 @@
 
 namespace Communication
 {
-	struct Routine
-	{
-		static void Process()
-		{
-
-		}
-	};
-
 	template <typename Routine, typename... Routines>
 	struct RoutineContainer;
 
@@ -32,7 +24,5 @@ namespace Communication
 			Routine::Process();
 			Next::Process();
 		}
-
-
 	};
 }

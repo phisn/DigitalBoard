@@ -1,15 +1,16 @@
 #pragma once
 
 #include "../Common/Common.h"
+#include "../Communication/Interface.h"
 
 namespace Game
 {
-	typedef unsigned char PlayerId;
+	typedef Communication::InterfaceID PlayerID;
 
 	struct CollectData
 	{
 		unsigned char playerCount;
-		PlayerId playerIds[DEF_PLAYER_COUNT];
+		PlayerID playerIds[DEF_PLAYER_COUNT];
 	};
 
 	namespace CollectorAccess

@@ -16,6 +16,7 @@ namespace Communication
 	*/
 
 	typedef void InterfaceView;
+	typedef uint32_t InterfaceID;
 
 	template <typename StateContainer>
 	class Interface
@@ -27,15 +28,20 @@ namespace Communication
 		{
 		}
 
-		virtual void initialize(const Game::PlayerId id)
+		virtual void initialize(const InterfaceID interfaceID)
 		{
-			this->id = id;
+			this->interfaceID = interfaceID;
+		}
+
+		InterfaceID getID() const
+		{
+			return interfaceID;
 		}
 
 		virtual void process() = 0;
 		virtual void notifyFault(const Device::Fault fault) = 0;
 
 	private:
-		Game::PlayerId id;
+		InterfaceID interfaceID;
 	};
 }

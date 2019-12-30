@@ -129,7 +129,9 @@
     <ClInclude Include="Device\StatusLED.h" />
     <ClInclude Include="Framework\Event.h" />
     <ClInclude Include="Framework\EventConfigurator.h" />
-    <ClInclude Include="Framework\Event\InterfaceJoinEvent.h" />
+    <ClInclude Include="Framework\Event\InterfaceLinkEvent.h" />
+    <ClInclude Include="Framework\Event\InterfacePushEvent.h" />
+    <ClInclude Include="Framework\Event\InterfaceRemoveEvent.h" />
     <ClInclude Include="Framework\Event\RestoreEvent.h" />
     <ClInclude Include="Framework\Framework.h" />
     <ClInclude Include="Game\CollectData.h" />
@@ -141,7 +143,6 @@
     <ClInclude Include="Game\StateContainer.h" />
     <ClInclude Include="Game\StateHandler.h" />
     <ClInclude Include="Game\StateManagerView.h" />
-    <ClInclude Include="InterfaceManager.h" />
     <ClInclude Include="__vm\.DigitalBoard.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +157,6 @@
     <ClCompile Include="Device\StatusLED.cpp" />
     <ClCompile Include="Game\Collector.cpp" />
     <ClCompile Include="Game\GameController.cpp" />
-    <ClCompile Include="InterfaceManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

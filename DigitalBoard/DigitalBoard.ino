@@ -49,7 +49,7 @@ void setup()
 	/*
 	
 	-	Config for interfaces. interfacecontainer?
-	-	additional configuration for device layer
+	-	additional eventConfiguration for device layer
 	-	more events
 	
 	*/

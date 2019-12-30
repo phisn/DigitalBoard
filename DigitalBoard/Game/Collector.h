@@ -23,7 +23,6 @@ namespace Game
 		public StateManagerView
 	{
 	public:
-		constexpr static bool CanJoin{ true };
 		constexpr static bool CanRestore{ false };
 		
 		typedef CollectData Data;
@@ -39,12 +38,12 @@ namespace Game
 		
 		// playerid is not player index
 		// playerid is a random number
-		PlayerId CreatePlayer();
-		bool RemovePlayer(const PlayerId player);
-		bool ExistsPlayer(const PlayerId player) const;
+		bool CreatePlayer(const PlayerID player);
+		bool RemovePlayer(const PlayerID player);
+		bool ExistsPlayer(const PlayerID player) const;
 
 		// -1 if not found
-		int FindPlayerIndex(const PlayerId player) const;
+		int FindPlayerIndex(const PlayerID player) const;
 
 	private:
 		bool needsUpdate;
@@ -52,9 +51,9 @@ namespace Game
 
 	namespace CollectorAccess
 	{
-		bool ExistsPlayer(const PlayerId player);
+		bool ExistsPlayer(const PlayerID player);
 		// -1 if not found
-		int FindPlayerIndex(const PlayerId player);
+		int FindPlayerIndex(const PlayerID player);
 	}
 
 	struct CustomInterfaceJoinHandler

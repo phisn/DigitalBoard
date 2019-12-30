@@ -7,7 +7,9 @@ namespace Framework
 	enum class Event
 	{
 		Restore,
-		InterfaceJoin,
+		InterfacePush,
+		InterfaceLink,
+		InterfaceRemove,
 		_Length
 	};
 
