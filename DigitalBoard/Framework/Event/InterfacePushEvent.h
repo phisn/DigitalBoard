@@ -7,15 +7,6 @@ namespace Framework
 {
 	struct InterfacePushEventData
 	{
-		InterfacePushEventData(
-			Communication::InterfaceID interfaceID,
-			Communication::InterfaceView* const interface)
-			:
-			interfaceID(interfaceID),
-			interface(interface)
-		{
-		}
-
 		Communication::InterfaceID interfaceID;
 		Communication::InterfaceView* interface;
 	};
@@ -33,7 +24,7 @@ namespace Framework
 		:
 		public InterfacePushHandler
 	{
-		static_assert(false, "InterfacePush event has to be overwritten");
+		// static_assert(false, "InterfacePush event has to be overwritten");
 	};
 
 	template <>

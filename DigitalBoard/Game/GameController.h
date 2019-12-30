@@ -94,6 +94,11 @@ namespace Game
 		{
 		}
 
+		const StateContext* getCurrentContext() const
+		{
+			return &stateContext;
+		}
+
 	private:
 		bool Restore()
 		{

@@ -24,7 +24,7 @@ namespace Framework
 		:
 		public InterfaceLinkHandler
 	{
-		static_assert(false, "InterfaceLink event has to be overwritten");
+		// static_assert(false, "InterfaceLink event has to be overwritten");
 	};
 
 	template <>

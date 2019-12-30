@@ -2,7 +2,10 @@
 
 #include "../Framework/Event.h"
 
+#include "../Framework/Event/InterfaceLinkEvent.h"
 #include "../Framework/Event/InterfacePushEvent.h"
+#include "../Framework/Event/InterfaceRemoveEvent.h"
+
 #include "../Framework/Event/RestoreEvent.h"
 
 namespace Framework

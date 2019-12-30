@@ -17,14 +17,14 @@ namespace Framework
 		typedef InterfaceRemoveHandlerDefault Default;
 		constexpr static Event event = Event::InterfaceRemove;
 
-		virtual bool Ask(InterfaceRemoveEventData* const data) = 0;
+		virtual void Notify(InterfaceRemoveEventData* const data) = 0;
 	};
 
 	struct InterfaceRemoveHandlerDefault
 		:
 		public InterfaceRemoveHandler
 	{
-		static_assert(false, "InterfaceRemove event has to be overwritten");
+		// static_assert(false, "InterfaceRemove event has to be overwritten");
 	};
 
 	template <>

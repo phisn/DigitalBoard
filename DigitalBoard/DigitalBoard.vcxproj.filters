@@ -102,9 +102,6 @@
     <ClInclude Include="Communication\CommController.h">
       <Filter>Communication</Filter>
     </ClInclude>
-    <ClInclude Include="Communication\InterfaceManager.h">
-      <Filter>Communication</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Framework.h">
       <Filter>Framework</Filter>
     </ClInclude>
@@ -122,6 +119,9 @@
     </ClInclude>
     <ClInclude Include="Framework\Event\InterfaceLinkEvent.h">
       <Filter>Framework\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication\CommAccess.h">
+      <Filter>Communication</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

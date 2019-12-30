@@ -50,6 +50,11 @@ namespace Game
 			return manager;
 		}
 
+		inline StateManagerView* getManager() const
+		{
+			return manager;
+		}
+
 		inline StateFactoryView* getFactory() const
 		{
 			return factory;

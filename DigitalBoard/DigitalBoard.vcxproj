@@ -114,7 +114,7 @@
   <ItemGroup>
     <ClInclude Include="Common\Common.h" />
     <ClInclude Include="Communication\CommController.h" />
-    <ClInclude Include="Communication\InterfaceManager.h" />
+    <ClInclude Include="Communication\CommAccess.h" />
     <ClInclude Include="Communication\RoutineContainer.h" />
     <ClInclude Include="Communication\Interface.h" />
     <ClInclude Include="Device\DeviceManager.h" />
